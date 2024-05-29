@@ -1,16 +1,17 @@
+//  {{ prefix }}{{ module_info.file_name }}
+//  {{ module_info.project_name }}
 //
-//  {{ module_info.description }}
 //  Created by {{ developer.name }} on {{ date }}.
-//
+//  Copyright {{ year }} {{ developer.company }}. All rights reserved.
 
-enum {{ module_info.name }} {
+enum {{ prefix }}{{ module_info.name }} {
     // MARK: Use cases
     enum Something {
         struct Request {
         }
 
         struct Response {
-            var result: {{ module_info.name }}RequestResult
+            var result: {{ prefix }}{{ module_info.name }}RequestResult
         }
 
         struct ViewModel {
@@ -18,9 +19,9 @@ enum {{ module_info.name }} {
         }
     }
 
-    enum {{ module_info.name }}RequestResult {
-        case failure({{ module_info.name }}Error)
-        case success([{{ module_info.name }}Model])
+    enum {{ prefix }}{{ module_info.name }}RequestResult {
+        case failure({{ prefix }}{{ module_info.name }}Error)
+        case success([{{ prefix }}{{ module_info.name }}Model])
     }
 
     enum ViewControllerState {
@@ -30,7 +31,7 @@ enum {{ module_info.name }} {
         case error(message: String)
     }
 
-    enum {{ module_info.name }}Error: Error {
+    enum {{ prefix }}{{ module_info.name }}Error: Error {
         case someError(message: String)
     }
 }

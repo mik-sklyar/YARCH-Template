@@ -1,26 +1,27 @@
+//  {{ prefix }}{{ module_info.file_name }}
+//  {{ module_info.project_name }}
 //
-//  {{ module_info.description }}
 //  Created by {{ developer.name }} on {{ date }}.
-//
+//  Copyright {{ year }} {{ developer.company }}. All rights reserved.
 
-protocol {{ module_info.name }}BusinessLogic {
-    func doSomething(request: {{ module_info.name }}.Something.Request)
+protocol {{ prefix }}{{ module_info.name }}BusinessLogic {
+    func doSomething(request: {{ prefix }}{{ module_info.name }}.Something.Request)
 }
 
 /// Класс для описания бизнес-логики модуля {{ module_info.name }}
-class {{ module_info.name }}Interactor: {{ module_info.name }}BusinessLogic {
-    let presenter: {{ module_info.name }}PresentationLogic
-    let provider: {{ module_info.name }}ProviderProtocol
+final class {{ prefix }}{{ module_info.name }}Interactor: {{ prefix }}{{ module_info.name }}BusinessLogic {
+    let presenter: {{ prefix }}{{ module_info.name }}PresentationLogic
+    let provider: {{ prefix }}{{ module_info.name }}ProviderProtocol
 
-    init(presenter: {{ module_info.name }}PresentationLogic, provider: {{ module_info.name }}ProviderProtocol = {{ module_info.name }}Provider()) {
+    init(presenter: {{ prefix }}{{ module_info.name }}PresentationLogic, provider: {{ prefix }}{{ module_info.name }}ProviderProtocol = {{ prefix }}{{ module_info.name }}Provider()) {
         self.presenter = presenter
         self.provider = provider
     }
     
     // MARK: Do something
-    func doSomething(request: {{ module_info.name }}.Something.Request) {
+    func doSomething(request: {{ prefix }}{{ module_info.name }}.Something.Request) {
         provider.getItems { (items, error) in
-            let result: {{ module_info.name }}.{{ module_info.name }}RequestResult
+            let result: {{ prefix }}{{ module_info.name }}.{{ prefix }}{{ module_info.name }}RequestResult
             if let items = items {
                 result = .success(items)
             } else if let error = error {
@@ -28,7 +29,7 @@ class {{ module_info.name }}Interactor: {{ module_info.name }}BusinessLogic {
             } else {
                 result = .failure(.someError(message: "No Data"))
             }
-            self.presenter.presentSomething(response: {{ module_info.name }}.Something.Response(result: result))
+            self.presenter.presentSomething(response: {{ prefix }}{{ module_info.name }}.Something.Response(result: result))
         }
     }
 }

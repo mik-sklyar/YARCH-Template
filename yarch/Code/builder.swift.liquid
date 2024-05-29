@@ -1,23 +1,24 @@
+//  {{ prefix }}{{ module_info.file_name }}
+//  {{ module_info.project_name }}
 //
-//  {{ module_info.description }}
 //  Created by {{ developer.name }} on {{ date }}.
-//
+//  Copyright {{ year }} {{ developer.company }}. All rights reserved.
 
 import UIKit
 
-class {{ module_info.name }}Builder: ModuleBuilder {
+final class {{ prefix }}{{ module_info.name }}Builder: ModuleBuilder {
 
-    var initialState: {{ module_info.name }}.ViewControllerState?
+    var initialState: {{ prefix }}{{ module_info.name }}.ViewControllerState?
 
-    func set(initialState: {{ module_info.name }}.ViewControllerState) -> {{ module_info.name }}Builder {
+    func set(initialState: {{ prefix }}{{ module_info.name }}.ViewControllerState) -> {{ prefix }}{{ module_info.name }}Builder {
         self.initialState = initialState
         return self
     } 
 
     func build() -> UIViewController {
-        let presenter = {{ module_info.name }}Presenter()
-        let interactor = {{ module_info.name }}Interactor(presenter: presenter)
-        let controller = {{ module_info.name }}ViewController(interactor: interactor)
+        let presenter = {{ prefix }}{{ module_info.name }}Presenter()
+        let interactor = {{ prefix }}{{ module_info.name }}Interactor(presenter: presenter)
+        let controller = {{ prefix }}{{ module_info.name }}ViewController(interactor: interactor)
 
         presenter.viewController = controller
         return controller

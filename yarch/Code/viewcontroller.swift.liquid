@@ -1,19 +1,20 @@
+//  {{ prefix }}{{ module_info.file_name }}
+//  {{ module_info.project_name }}
 //
-//  {{ module_info.description }}
 //  Created by {{ developer.name }} on {{ date }}.
-//
+//  Copyright {{ year }} {{ developer.company }}. All rights reserved.
 
 import UIKit
 
-protocol {{ module_info.name }}DisplayLogic: class {
-    func displaySomething(viewModel: {{ module_info.name }}.Something.ViewModel)
+protocol {{ prefix }}{{ module_info.name }}DisplayLogic: AnyObject {
+    func displaySomething(viewModel: {{ prefix }}{{ module_info.name }}.Something.ViewModel)
 }
 
-class {{ module_info.name }}ViewController: UIViewController {
-    let interactor: {{ module_info.name }}BusinessLogic
-    var state: {{ module_info.name }}.ViewControllerState
+final class {{ prefix }}{{ module_info.name }}ViewController: UIViewController {
+    let interactor: {{ prefix }}{{ module_info.name }}BusinessLogic
+    var state: {{ prefix }}{{ module_info.name }}.ViewControllerState
 
-    init(interactor: {{ module_info.name }}BusinessLogic, initialState: {{ module_info.name }}.ViewControllerState = .loading) {
+    init(interactor: {{ prefix }}{{ module_info.name }}BusinessLogic, initialState: {{ prefix }}{{ module_info.name }}.ViewControllerState = .loading) {
         self.interactor = interactor
         self.state = initialState
         super.init(nibName: nil, bundle: nil)
@@ -25,7 +26,7 @@ class {{ module_info.name }}ViewController: UIViewController {
 
     // MARK: View lifecycle
     override func loadView() {
-        let view = {{ module_info.name }}View(frame: UIScreen.main.bounds)
+        let view = {{ prefix }}{{ module_info.name }}View(frame: UIScreen.main.bounds)
         self.view = view
         // make additional setup of view or save references to subviews
     }
@@ -37,17 +38,17 @@ class {{ module_info.name }}ViewController: UIViewController {
 
     // MARK: Do something
     func doSomething() {
-        let request = {{ module_info.name }}.Something.Request()
+        let request = {{ prefix }}{{ module_info.name }}.Something.Request()
         interactor.doSomething(request: request)
     }
 }
 
-extension {{ module_info.name }}ViewController: {{ module_info.name }}DisplayLogic {
-    func displaySomething(viewModel: {{ module_info.name }}.Something.ViewModel) {
+extension {{ prefix }}{{ module_info.name }}ViewController: {{ prefix }}{{ module_info.name }}DisplayLogic {
+    func displaySomething(viewModel: {{ prefix }}{{ module_info.name }}.Something.ViewModel) {
         display(newState: viewModel.state)
     }
 
-    func display(newState: {{ module_info.name }}.ViewControllerState) {
+    func display(newState: {{ prefix }}{{ module_info.name }}.ViewControllerState) {
         state = newState
         switch state {
         case .loading:

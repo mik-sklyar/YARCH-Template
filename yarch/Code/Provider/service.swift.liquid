@@ -1,15 +1,17 @@
+//  {{ prefix }}{{ module_info.file_name }}
+//  {{ module_info.project_name }}
 //
 //  Created by {{ developer.name }} on {{ date }}.
-//
+//  Copyright {{ year }} {{ developer.company }}. All rights reserved.
 
-protocol {{ module_info.name }}ServiceProtocol {
-    func fetchItems(completion: @escaping ([{{ module_info.name }}Model]?, Error?) -> Void)
+protocol {{ prefix }}{{ module_info.name }}ServiceProtocol {
+    func fetchItems(completion: @escaping ([{{ prefix }}{{ module_info.name }}Model]?, Error?) -> Void)
 }
 
 /// Получает данные для модуля {{ module_info.name }}
-class {{ module_info.name }}Service: {{ module_info.name }}ServiceProtocol {
+final class {{ prefix }}{{ module_info.name }}Service: {{ prefix }}{{ module_info.name }}ServiceProtocol {
 
-    func fetchItems(completion: @escaping ([{{ module_info.name }}Model]?, Error?) -> Void) {
+    func fetchItems(completion: @escaping ([{{ prefix }}{{ module_info.name }}Model]?, Error?) -> Void) {
         completion(nil, nil)
     }
 }
